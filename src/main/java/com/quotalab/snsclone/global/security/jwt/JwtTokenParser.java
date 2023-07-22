@@ -35,9 +35,14 @@ public class JwtTokenParser {
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
+    public String getKeyByJwt(JWT jwt) {
+        return jwt.equals(JWT.ACCESS) ? jwtProperties.getAccessKey() : jwtProperties.getRefreshKey();
+    }
+
     public Claims getTokenBody(String token, JWT jwt) {
-        String key = jwtProperties.getAccessKey();
-        return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+        String key = getKeyByJwt(jwt);
+        return Jwts.parser().setSigningKey(key)
+                .parseClaimsJws(token).getBody();
     }
 
 }

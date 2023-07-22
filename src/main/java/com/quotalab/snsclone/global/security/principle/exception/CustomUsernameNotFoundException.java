@@ -1,12 +1,12 @@
-package com.quotalab.snsclone.global.security.principle;
+package com.quotalab.snsclone.global.security.principle.exception;
 
+import com.quotalab.snsclone.domain.user.exception.error.UserExceptionCode;
 import com.quotalab.snsclone.global.exception.CustomException;
-import org.springframework.http.HttpStatus;
 
 public class CustomUsernameNotFoundException extends CustomException {
 
     private CustomUsernameNotFoundException() {
-        super();
+        super(UserExceptionCode.USER_NAME_NOT_FOUND);
     }
 
     public static final CustomException EXCEPTION = new CustomUsernameNotFoundException();

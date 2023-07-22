@@ -2,6 +2,7 @@ package com.quotalab.snsclone.global.security.principle;
 
 import com.quotalab.snsclone.domain.user.domain.User;
 import com.quotalab.snsclone.domain.user.domain.repository.UserRepository;
+import com.quotalab.snsclone.global.security.principle.exception.CustomUsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
