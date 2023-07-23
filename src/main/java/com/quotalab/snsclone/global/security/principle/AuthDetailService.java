@@ -2,6 +2,7 @@ package com.quotalab.snsclone.global.security.principle;
 
 import com.quotalab.snsclone.domain.user.domain.User;
 import com.quotalab.snsclone.domain.user.domain.repository.UserRepository;
+import com.quotalab.snsclone.global.security.principle.exception.CustomUsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class AuthDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
 
     @Override
     public UserDetails loadUserByUsername(String username){
