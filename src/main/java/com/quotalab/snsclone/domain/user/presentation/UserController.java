@@ -28,7 +28,7 @@ public class UserController {
         );
     }
 
-    @PostMapping("exists")
+    @PostMapping("/exists")
     public ResponseData<Boolean> existsEmail(
             @RequestBody @Valid ExistsEmailRequest request
     ) {

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 @Configuration
-@ConfigurationProperties("app.jwt")
+@ConfigurationProperties("jwt")
 public class JwtProperties {
 
     private String prefix;

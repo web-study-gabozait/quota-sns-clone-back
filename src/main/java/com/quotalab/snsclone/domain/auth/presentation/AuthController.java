@@ -19,7 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/")
+    @PostMapping
     public ResponseData<LoginResponse> login(
             @RequestBody @Valid LoginRequest request
     ) {

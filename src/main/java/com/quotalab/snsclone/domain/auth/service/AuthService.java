@@ -25,7 +25,7 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
-    @Transactional(readOnly = true)
+    @Transactional
     public void join(CreateUserRequest request) {
 
             if(userRepository.existsByEmail(request.getEmail())) {
@@ -36,14 +36,14 @@ public class AuthService {
             User user = User.builder()
                     .name(request.getName())
                     .email(request.getEmail())
-                    .passwd(request.getPasswd())
+                    .passwd(pw)
                     .profile_image_url(request.getProfile_image_url())
                     .build();
 
             userRepository.save(user);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public LoginResponse login(LoginRequest request) {
         if(!userRepository.existsByEmail(request.getEmail())) {
             throw NotJoinUserException.EXCEPTION;
@@ -56,10 +56,14 @@ public class AuthService {
             throw PasswordNotMatchException.EXCEPTION;
         }
 
-        String accessToken = jwtTokenProvider.generateToken(user.getSeq(), JWT.ACCESS);
+        user.increaseLoginCount();
+
+        User increasedUser = userRepository.save(user);
+
+        String accessToken = jwtTokenProvider.generateToken(increasedUser.getSeq(), JWT.ACCESS);
 
         return LoginResponse.builder()
-                .user(new UserResponse(user))
+                .user(new UserResponse(increasedUser))
                 .accessToken(accessToken)
                 .build();
     }

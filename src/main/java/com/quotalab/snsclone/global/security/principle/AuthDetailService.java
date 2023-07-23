@@ -14,7 +14,6 @@ public class AuthDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-
     @Override
     public UserDetails loadUserByUsername(String username){
         User user = userRepository.findById(Long.parseLong(username)).orElseThrow(()-> CustomUsernameNotFoundException.EXCEPTION);

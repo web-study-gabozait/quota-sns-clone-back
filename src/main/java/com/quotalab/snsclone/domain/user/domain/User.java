@@ -5,9 +5,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.util.Assert;
-
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity(name = "user")
@@ -48,6 +45,14 @@ public class User {
         this.email = email;
     }
 
+    public void updateLastLoginAt() {
+        this.last_login_at = LocalDateTime.now();
+    }
+
+    public void increaseLoginCount() {
+        this.login_count++;
+    }
+
     @Builder
     public User(Long seq, String name, String passwd, String email, String profile_image_url) {
        this.seq = seq;
@@ -55,6 +60,8 @@ public class User {
        this.passwd = passwd;
        this.email = email;
        this.profile_image_url = profile_image_url;
+       this.create_at = LocalDateTime.now();
+       this.login_count = 0;
     }
 
 }

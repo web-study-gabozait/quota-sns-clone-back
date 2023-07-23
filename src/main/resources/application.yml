@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/quotasns?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: qwerty3907
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  jpa:
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: update
+
+jwt:
+  secret: quotasns
+  prefix: Bearer
+  header: Authorization
+  accessExp: 100000
+  accessKey: quotasns-access-key
+  refreshKey: quotasns-refresh-key
